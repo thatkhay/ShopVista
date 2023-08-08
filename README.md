@@ -1,2 +1,2 @@
-# ShopVista
-an ecommerce website
+<!-- # ShopVista
+an ecommerce website -->
