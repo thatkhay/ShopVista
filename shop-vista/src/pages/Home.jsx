@@ -31,22 +31,24 @@ let Img = [
 
 const Home = () => {
   const [selectedImg, setSelectedImg] = useState(ImgTop[0])
+  const [selectedImgIndex, setSelectedImgIndex] = useState(0);
   const handleImageClick = (index) => {
     setSelectedImg(ImgTop[index]);
+    setSelectedImgIndex(index)
   };
 
   return (
     <>
    <Header /> 
     <Container style={{ padding: '0 6rem' }} >
-    <div style={{ }}>
-          <img src={selectedImg} alt="selected-product" style={{ maxHeight: '200px' }} />
+    <div style={{ height: '' }}>
+          <img src={selectedImg} alt="selected-product" style={{ maxHeight: '22rem', width: '18rem', borderRadius: '.6rem' }} />
         </div>
-      <div style={{ display: 'flex' , gap: '1rem'}}>
+      <div style={{ display: 'flex' ,  width: '18rem', justifyContent: 'space-between'}}>
 {Img.map((imgSrc, index) => 
    (
     <div key={index} onClick={() => handleImageClick(index)} style={{ cursor: 'pointer' }}>
-      <img   style={{ height: '3rem', width: '3rem', borderRadius: '.5rem'}} src={imgSrc} alt="product-1" />
+      <img   style={{ height: '3.4rem', width: '3.4rem', borderRadius: '.5rem', border: selectedImgIndex === index ?  '2px solid hsl(26, 100%, 55%)' : 'none', backgroundColor: selectedImgIndex === index ? 'hsl(25, 100%, 94%)' : 'none'  }} src={imgSrc} alt="product-1" />
       </div>
 ))}</div>
     </Container>

@@ -11,12 +11,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import iconImg from '../assets/image-avatar.png'
 const drawerWidth = 240;
 
 
 function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [IconActive , setIconActive] = useState(false)
+
+
+
+  const handleIconActive = () => {
+    setIconActive((prevState) => !prevState);
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -55,9 +63,9 @@ function Header(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box>
+    <Box >
     
-      <AppBar component="nav" style={{backgroundColor: 'hsl(0, 0%, 100%)',  width: mobileOpen ? '100%' : '80%' , marginRight: mobileOpen ? '0%' : '10%'}}>
+      <AppBar component="nav" style={{backgroundColor: 'hsl(0, 0%, 100%)', width: mobileOpen ? '80%' : '100%' }}>
         <Toolbar style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <IconButton
             color="inherit"
@@ -71,38 +79,39 @@ function Header(props) {
           <h1 style={{fontSize: '700', color:'black'}}> sneakers </h1>
           <Box sx={{ display: { xs: 'none', sm: 'block', md: 'block' } }} >
           
-     <List style={{ display: 'flex' , maxWidth: '500px', gap: '4rem',  marginLeft: mobileOpen ? '0rem' : '-24rem'}}>
+     <List style={{ display: 'flex' , maxWidth: '500px', gap: '4rem'}}>
        
-          <ListItem  disablePadding>
+          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none',  color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Home</Link>
           </ListItem>
           
-          <ListItem  disablePadding>
+          <ListItem  style={{ height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/men'>Men</Link>
           </ListItem>
           
-          <ListItem  disablePadding>
+          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/women'>Women</Link>
           </ListItem>
           
-          <ListItem  disablePadding>
+          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/about'>About</Link>
           </ListItem>
           
-          <ListItem  disablePadding>
+          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/contact'>Contact</Link>
           </ListItem>
      
       </List>
   
           </Box>
-          <div style={{  display: 'flex'}}>
+          <div style={{  display: 'flex', alignItems: 'center', gap: '.5rem'}}>
           <ShoppingCartIcon sx={{ color: 'gray'}}/>
-          <img src="" alt="" />
+          <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid black' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
           </div>
         </Toolbar>
         
       </AppBar>
+     
       <Box component="nav">
         <Drawer
           container={container}
