@@ -12,11 +12,15 @@ import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import iconImg from '../assets/image-avatar.png'
+import useMediaQuery from '@mui/material/useMediaQuery';
 import '../index.css';
 const drawerWidth = 240;
 
 
 function Header(props) {
+  const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
+  const pcSize = useMediaQuery('(min-width:900px)');
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [IconActive , setIconActive] = useState(false)
@@ -86,7 +90,7 @@ function Header(props) {
           <h1 style={{fontSize: '700', color:'black'}}> sneakers </h1>
           <Box sx={{ display: { xs: 'none', sm: 'block', md: 'block' } }} >
           
-     <List style={{ display: 'flex' , maxWidth: '500px', gap: '4rem', position: 'relative', left: '-3rem'}}>
+     <List style={{ display: 'flex' , maxWidth: '500px', gap: tabSize ? '2rem' : '4rem', marginLeft: pcSize ? '-32rem' : '0'}}>
        
           <ListItem onClick={handleActive} className={active ? 'homeActive' : '' } style={{  height: '4rem', width: '2rem', }}  disablePadding>
            <Link style={{textDecoration: 'none',  color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Home</Link>

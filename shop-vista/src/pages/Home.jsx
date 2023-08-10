@@ -4,7 +4,14 @@ import Header from '../components/Header'
 import { Container } from '@mui/material'
 import Modal from '../components/Modal'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+
 function Home() {
+  const isMobile = useMediaQuery('(min-width:0px) and (max-width:599.99px)')
+  const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
+
+
   const [products] = useState(data)
   const [value, setValue] = useState(0)
   const [slideIndex, setSlideIndex] = useState(1)
@@ -32,12 +39,12 @@ function Home() {
     <Container>
    <Header/>
    <Modal products={products}/>
-   <Container style={{alignItems: 'center', display: 'flex', marginTop: '3rem', justifyContent: 'space-between'}}>
+   <Container style={{alignItems: 'center', display: 'flex', marginTop: '3rem', flexDirection: isMobile ? 'column' : 'row', gap: tabSize ? '3rem' : ''}}>
    <main style={{ display: 'flex' , alignItems: 'center' ,  flexDirection: 'column' , width: '50%'}}>
     <div style={{position: 'relative', zIndex: 50}}>
     <img src={mainImg} alt="" style={{ height: '20rem', width: '18rem', borderRadius: '.7rem' }} />
     <div>
-      <button style={{ backgroundColor: 'white', borderRadius: '50%', padding: '1rem', boxShadow: 'box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.4)', position: 'absolute', right: '1rem', top: '7rem' }}><FaChevronRight/></button>
+      <button style={{ backgroundColor:  'white', borderRadius: '50%', padding: '1rem', boxShadow: 'box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.4)', position: 'absolute', right: '1rem', top: '7rem' }}><FaChevronRight/></button>
       <button style={{ backgroundColor: 'white', borderRadius: '50%', padding: '1rem', boxShadow: 'box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.4)', position: 'absolute', right: '14rem', top: '7rem' }}><FaChevronLeft/></button>
     </div>
     </div>
