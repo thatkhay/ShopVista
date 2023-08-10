@@ -1,60 +1,62 @@
 import React, { useState } from 'react'
+import {data} from '../data'
 import Header from '../components/Header'
 import { Container } from '@mui/material'
-import ImgTop1 from '../assets/image-product-1-thumbnail.jpg'
-import ImgTop2 from '../assets/image-product-2-thumbnail.jpg'
-import ImgTop3 from '../assets/image-product-3-thumbnail.jpg'
-import ImgTop4 from '../assets/image-product-4-thumbnail.jpg'
 
+function Home() {
+  const [products] = useState(data)
+  const [value, setValue] = useState(0)
 
-import Img1 from '../assets/image-product-1.jpg'
-import Img2 from '../assets/image-product-2.jpg'
-import Img3 from '../assets/image-product-3.jpg'
-import Img4 from '../assets/image-product-4.jpg'
-
-let ImgTop = [
-  ImgTop1,
-  ImgTop2,
-  ImgTop3,
-  ImgTop4,
-];
-
-let Img = [
-  
-  Img1,
-  Img2,
-  Img3,
-  Img4
-]
-  
-
-
-const Home = () => {
-  const [selectedImg, setSelectedImg] = useState(ImgTop[0])
-  const [selectedImgIndex, setSelectedImgIndex] = useState(0);
-  const handleImageClick = (index) => {
-    setSelectedImg(ImgTop[index]);
-    setSelectedImgIndex(index)
-  };
+  const { mainImg } = products[value]
 
   return (
-    <>
-   <Header /> 
-    <Container style={{ padding: '0 6rem' }} >
-    <div style={{ height: '' }}>
-          <img src={selectedImg} alt="selected-product" style={{ maxHeight: '22rem', width: '18rem', borderRadius: '.6rem' }} />
-        </div>
-      <div style={{ display: 'flex' ,  width: '18rem', justifyContent: 'space-between'}}>
-{Img.map((imgSrc, index) => 
-   (
-    <div key={index} onClick={() => handleImageClick(index)} style={{ cursor: 'pointer' }}>
-      <img   style={{ height: '3.4rem', width: '3.4rem', borderRadius: '.5rem', border: selectedImgIndex === index ?  '2px solid hsl(26, 100%, 55%)' : 'none', backgroundColor: selectedImgIndex === index ? 'hsl(25, 100%, 94%)' : 'none'  }} src={imgSrc} alt="product-1" />
-      </div>
-))}</div>
-    </Container>
- 
+    
+    <Container>
+   <Header/>
+   <Container style={{alignItems: 'center', display: 'flex', marginTop: '3rem', justifyContent: 'space-between'}}>
+   <main style={{ display: 'flex' , alignItems: 'center' ,  flexDirection: 'column' , width: '50%'}}>
+    <div >
+    <img src={mainImg} alt="" style={{ height: '20rem', width: '18rem', borderRadius: '.7rem' }} />
+    </div>
 
-    </>
+    <ul style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '18rem', marginLeft: '-2rem'}}>
+    {products.map((item, index) => (
+    <li style={{ display: 'flex' , height: '3.5rem', width: '3.5rem', border: index === value && '2px solid hsl(26, 100%, 55%)', borderRadius: '.6rem', backgroundColor: index === value && 'hsl(25, 100%, 94%)', overflow: index === value && 'hidden'}} key={item.id} onClick={() => setValue(index)}> <img src={item.thumbnail} alt=""  style={{borderRadius: '.4rem'}}/> </li>
+     ))}
+    </ul>
+    </main>
+
+
+    <main style={{width: '50%'}}>
+   <h2>Sneaker Company</h2>
+   <h1>Fall limited sneaker</h1>
+   <p>these low-profile sneaker are your perfect causual wear companion. featuring a durable rubber outer sole, they'll withstand everything the weather can offer</p>
+   <div>
+
+    <div >
+      <span>$125.00</span>
+      <span>50%</span>
+    </div>
+    <span style={{textDecoration: 'line-through'}}>$250</span>
+   </div>
+
+   <div>
+  <div>
+    <img src="" alt="" />
+    <span>3</span>
+    <img src="" alt="" />
+  </div>
+  <div>
+    <img src="" alt="" />
+    <p>add to cart</p>
+  </div>
+   </div>
+    </main>
+
+    
+    </Container>
+    </Container>
+    
   )
 }
 

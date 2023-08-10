@@ -12,6 +12,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import iconImg from '../assets/image-avatar.png'
+import '../index.css';
 const drawerWidth = 240;
 
 
@@ -19,9 +20,15 @@ function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [IconActive , setIconActive] = useState(false)
+  const [active , setActive] = useState(false)
+  
+
+  const handleActive = () => {
+    setActive(true);
+  }
 
 
-
+ 
   const handleIconActive = () => {
     setIconActive((prevState) => !prevState);
   }
@@ -79,25 +86,25 @@ function Header(props) {
           <h1 style={{fontSize: '700', color:'black'}}> sneakers </h1>
           <Box sx={{ display: { xs: 'none', sm: 'block', md: 'block' } }} >
           
-     <List style={{ display: 'flex' , maxWidth: '500px', gap: '4rem'}}>
+     <List style={{ display: 'flex' , maxWidth: '500px', gap: '4rem', position: 'relative', left: '-3rem'}}>
        
-          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem onClick={handleActive} className={active ? 'homeActive' : '' } style={{  height: '4rem', width: '2rem', }}  disablePadding>
            <Link style={{textDecoration: 'none',  color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Home</Link>
           </ListItem>
           
-          <ListItem  style={{ height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='menActive' style={{ height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/men'>Men</Link>
           </ListItem>
           
-          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='womenActive' style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/women'>Women</Link>
           </ListItem>
           
-          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='aboutActive' style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/about'>About</Link>
           </ListItem>
           
-          <ListItem  style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='contactActive'  style={{  height: '4rem', width: '2rem' }}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/contact'>Contact</Link>
           </ListItem>
      
@@ -106,7 +113,7 @@ function Header(props) {
           </Box>
           <div style={{  display: 'flex', alignItems: 'center', gap: '.5rem'}}>
           <ShoppingCartIcon sx={{ color: 'gray'}}/>
-          <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid black' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
+          <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid hsl(26, 100%, 55%)' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
           </div>
         </Toolbar>
         
