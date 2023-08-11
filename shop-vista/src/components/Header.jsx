@@ -115,8 +115,8 @@ function Header(props) {
       </List>
   
           </Box>
-          <div style={{  display: 'flex', alignItems: 'center', gap: '.5rem'}}>
-          <ShoppingCartIcon sx={{ color: 'gray'}}/>
+          <div style={{  display: 'flex', alignItems: 'center', gap: '.6rem', width: '6rem'}}>
+          <ShoppingCartIcon fontSize='small' sx={{ color: 'gray'}}/>
           <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid hsl(26, 100%, 55%)' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
           </div>
         </Toolbar>

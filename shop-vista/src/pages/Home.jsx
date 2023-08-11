@@ -5,6 +5,11 @@ import { Container } from '@mui/material'
 import Modal from '../components/Modal'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useDispatch, useSelector } from 'react-redux'
+import { decrement, increment } from '../reduxstore/counter'
 
 
 function Home() {
@@ -12,6 +17,8 @@ function Home() {
   const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
 
 
+const { count } = useSelector((state) => state.counter)
+const dispatch = useDispatch()
   const [products] = useState(data)
   const [value, setValue] = useState(0)
   const [slideIndex, setSlideIndex] = useState(1)
@@ -60,26 +67,26 @@ function Home() {
     <main style={{width: isMobile ? '80%' : '50%'}}>
    <h2 style={{textTransform: 'uppercase', color: 'hsl(26, 100%, 55%)', fontSize: '.6rem', fontWeight: 900, letterSpacing: '.8px'}}>Sneaker Company</h2>
    <h1 style={{width: isMobile? '100%' : '70%', fontWeight: 700, textTransform: 'capitalize'}}>Fall limited edition sneaker</h1>
-   <p style={{fontSize: '.8rem', color: ' hsl(219, 9%, 45%)', fontWeight: 700, textTransform: 'capitalize'}}>these low-profile sneaker are your perfect causual wear companion. featuring a durable rubber outer sole, they'll withstand everything the weather can offer</p>
+   <p style={{fontSize: '.7rem', color: ' hsl(219, 9%, 45%)', fontWeight: 700, textTransform: 'capitalize', letterSpacing: '.02rem'}}>these low-profile sneaker are your perfect causual wear companion. featuring a durable rubber outer sole, they'll withstand everything the weather can offer</p>
 
-   <div style={{display: 'flex', justifyContent: isMobile ? 'space-between' : '0', width: isMobile ? '100%' : '13rem', flexDirection: isMobile ? 'column' : 'row'}}>
+   <div style={{display: 'flex', justifyContent: isMobile ? 'space-between' : '0', width: isMobile ? '100%' : '13rem', flexDirection: isMobile ? 'row' : 'column'}}>
 
     <div style={{display: 'flex', alignItems:'center' , gap: '1rem', marginTop: '1.5rem'}} >
       <span style={{fontSize: '1.2rem', color: 'black', fontWeight: 900}}>$125.00</span>
-      <span style={{fontSize: '.7rem', backgroundColor: 'hsl(25, 100%, 94%)', padding: '.2rem .3rem', borderRadius: '.3rem'}}>50%</span>
+      <span style={{fontSize: '.7rem', backgroundColor: 'hsl(25, 100%, 94%)', padding: '.2rem .3rem', borderRadius: '.3rem', color: 'hsl(26, 100%, 55%)'}}>50%</span>
     </div>
-    <span style={{textDecoration: 'line-through', fontSize: '.7rem', marginTop: isMobile ? '1rem' : '2rem', color: 'hsl(220, 14%, 75%)'}}>$250</span>
+    <span style={{textDecoration: 'line-through', fontSize: '.7rem', marginTop: isMobile ? '2rem' : '1rem', color: 'hsl(220, 14%, 75%)'}}>$250</span>
    </div>
 
-   <div>
-  <div>
-    <img src="" alt="" />
-    <span>3</span>
-    <img src="" alt="" />
+   <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '1rem' , marginTop: '1.5rem', flexDirection: isMobile ? 'column' : 'row'}}>
+  <div style={{ height: '2rem', width: isMobile ? '70%' : '20%', display: 'flex', alignItems: 'center', backgroundColor: 'hsl(223, 64%, 98%)', padding: '0 1rem', borderRadius: '.3rem' , justifyContent: 'space-between'}}>
+    <div onClick={() => dispatch(decrement())}><RemoveIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}} /></div>
+    <span>{count}</span>
+   <div onClick={() => dispatch(increment())}><AddIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}}/></div> 
   </div>
-  <div>
-    <img src="" alt="" />
-    <p>add to cart</p>
+  <div style={{ height: '2rem', width: isMobile ? '70%' :  '40%', display: 'flex', alignItems: 'center', padding: '0 1rem', backgroundColor: 'hsl(26, 100%, 55%)', borderRadius: '.3rem', justifyContent: 'center', gap: '1rem'}}>
+    <ShoppingCartIcon fontSize='small' style={{color: 'white'}}/>
+    <p style={{textTransform: 'capitalize', color: 'white'}}>add to cart</p>
   </div>
    </div>
     </main>
