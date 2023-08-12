@@ -3,7 +3,6 @@ import {data} from '../data'
 import Header from '../components/Header'
 import { Container } from '@mui/material'
 import Modal from '../components/Modal'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,9 +13,22 @@ import { addtocart } from '../reduxstore/cart'
 
 
 function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductIndex, setSelectedProductIndex] = useState(0);
+
+  const openModal = (index) => {
+    setSelectedProductIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const isMobile = useMediaQuery('(min-width:0px) and (max-width:599.99px)')
   const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
-  
+  const pcSize = useMediaQuery('(min-width:900px)');
+
   const [buttonClicked, setButtonClicked] = useState(false);
 
 const { count } = useSelector((state) => state.counter)
@@ -24,40 +36,28 @@ const { count } = useSelector((state) => state.counter)
 const dispatch = useDispatch()
   const [products] = useState(data)
   const [value, setValue] = useState(0)
-  const [slideIndex, setSlideIndex] = useState(1)
+
 
   const { mainImg } = products[value]
 
   
 
- const nextSlide = () => {
-  if (slideIndex !== products.length){
-    setSlideIndex(slideIndex + 1)
-  }else if  (slideIndex === products.length){
-    setSlideIndex(1)
-  }
- }
- const prevSlide = () => {
-  if (slideIndex !== products.length){
-    setSlideIndex(slideIndex - 1)
-  }else if  (slideIndex === products.length){
-    setSlideIndex(1)
-  }
- }
 
   return (
    
     
-    <Container style={{padding: isMobile ? '0' : 'auto'}}>
+    <Container style={{padding: isMobile ? '0' : 'auto', height: pcSize ? '100vh' : 'auto'}}>
    <Header/>
-   <Modal products={products}/>
+   {isModalOpen && (
+        <Modal products={products} selectedProductIndex={selectedProductIndex} closeModal={closeModal} />
+      )}
    <Container style={{alignItems: 'center', display: 'flex', marginTop: '3rem', flexDirection: isMobile ? 'column' : 'row', gap: tabSize ? '3rem' : '1rem'}}>
    <main style={{ display: 'flex' , alignItems: 'center' ,  flexDirection: 'column' , width: '50%'}}>
+    
     <div style={{position: 'relative', zIndex: 50}}>
-    <img src={mainImg} alt="" style={{ height: '20rem', width: '18rem', borderRadius: '.7rem' }} />
+    <img src={mainImg} alt="" style={{ height: '20rem', width: '18rem', borderRadius: '.7rem' }} onClick={() => openModal(value)} />
     <div>
-      <button style={{ backgroundColor:  'white', borderRadius: '50%', padding: '1rem', boxShadow: 'box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.4)', position: 'absolute', right: '1rem', top: '7rem' }}><FaChevronRight/></button>
-      <button style={{ backgroundColor: 'white', borderRadius: '50%', padding: '1rem', boxShadow: 'box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.4)', position: 'absolute', right: '14rem', top: '7rem' }}><FaChevronLeft/></button>
+
     </div>
     </div>
 
@@ -91,7 +91,7 @@ const dispatch = useDispatch()
   </div>
   <div style={{ height: '2rem', width: isMobile ? '70%' :  '40%', display: 'flex', alignItems: 'center', padding: '0 1rem', backgroundColor: 'hsl(26, 100%, 55%)', borderRadius: '.3rem', justifyContent: 'center', gap: '1rem', cursor: 'pointer'}}  onClick={() => {
     dispatch(addtocart({ ...products[value], quantity: count }));
-    setButtonClicked(true); // Set the buttonClicked state to true
+    setButtonClicked(true); 
   }}>
     <ShoppingCartIcon fontSize='small' style={{color: 'white'}}/>
     <p style={{textTransform: 'capitalize', color: 'white', fontSize: tabSize ? '.6rem' : '1rem'}}>add to cart</p> 
