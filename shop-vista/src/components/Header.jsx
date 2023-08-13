@@ -31,7 +31,7 @@ function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [IconActive , setIconActive] = useState(false)
-  const [active , setActive] = useState(false)
+ 
   
 
 
@@ -39,10 +39,7 @@ const handleShowCart = () => {
   setCartFilled(!CartFilled)
 }
 
-  const handleActive = () => {
-    setActive(true);
-  }
-
+ 
 
  
   const handleIconActive = () => {
@@ -104,23 +101,23 @@ const handleShowCart = () => {
           
      <List style={{ display: 'flex' , maxWidth: '500px', gap: tabSize ? '2rem' : '4rem', marginLeft: pcSize ? '-32rem' : '0'}}>
        
-          <ListItem onClick={handleActive} className={active ? 'homeActive' : '' } style={{  height: '4rem', width: '2rem', }}  disablePadding>
+          <ListItem  className= 'homeActive' style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center' }}  disablePadding>
            <Link style={{textDecoration: 'none',  color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Home</Link>
           </ListItem>
           
-          <ListItem className='menActive' style={{ height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='menActive' style={{ height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/men'>Men</Link>
           </ListItem>
           
-          <ListItem className='womenActive' style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='womenActive' style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/women'>Women</Link>
           </ListItem>
           
-          <ListItem className='aboutActive' style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='aboutActive' style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/about'>About</Link>
           </ListItem>
           
-          <ListItem className='contactActive'  style={{  height: '4rem', width: '2rem' }}  disablePadding>
+          <ListItem className='contactActive'  style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
            <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/contact'>Contact</Link>
           </ListItem>
      
@@ -138,7 +135,7 @@ const handleShowCart = () => {
             <div onClick={handleShowCart} style={{cursor: 'pointer'}}>
             <ShoppingCartIcon fontSize='small' sx={{ color: 'gray'}} />
             </div>
-         {CartFilled &&  <CartCard />}
+         {CartFilled &&  <CartCard  />}
             </div>
          
           <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid hsl(26, 100%, 55%)' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>

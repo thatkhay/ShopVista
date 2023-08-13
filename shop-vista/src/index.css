@@ -12,5 +12,21 @@ code {
     monospace;
 }
 
+.homeActive:hover{
+  border-bottom: 1px solid hsl(26, 100%, 55%);
+}
+.menActive:hover{
+  border-bottom: 1px solid hsl(26, 100%, 55%);
+}
+.womenActive:hover{
+  border-bottom: 1px solid hsl(26, 100%, 55%);
+}
+.aboutActive:hover{
+  border-bottom: 1px solid hsl(26, 100%, 55%);
+}
+.contactActive:hover{
+  border-bottom: 1px solid hsl(26, 100%, 55%);
+}
+
 
 
