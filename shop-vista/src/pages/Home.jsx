@@ -66,7 +66,7 @@ const dispatch = useDispatch()
    
     
     <Container style={{padding: isMobile ? '0' : 'auto', height: pcSize ? '100vh' : 'auto'}}>
-   <Header/>
+        <Header numOfCartItem={numOfCartItem} />
    {isModalOpen && (
         <Modal products={products} selectedProductIndex={selectedProductIndex} closeModal={closeModal} />
       )}
@@ -111,7 +111,6 @@ const dispatch = useDispatch()
   <div style={{ height: '2rem', width: isMobile ? '70%' :  '40%', display: 'flex', alignItems: 'center', padding: '0 1rem', backgroundColor: 'hsl(26, 100%, 55%)', borderRadius: '.3rem', justifyContent: 'center', gap: '1rem', cursor: 'pointer'}} onClick={getCartNo}>
     <ShoppingCartIcon fontSize='small' style={{color: 'white'}}/>
     <p style={{textTransform: 'capitalize', color: 'white', fontSize: tabSize ? '.6rem' : '1rem'}}>add to cart</p> 
-     <p>{numOfCartItem} </p>
   </div>
    </div>
     </main>

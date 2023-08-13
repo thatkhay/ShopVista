@@ -14,6 +14,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import iconImg from '../assets/image-avatar.png'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import '../index.css';
+import CartItemCounter from './CartItemCounter';
 const drawerWidth = 240;
 
 
@@ -116,7 +117,16 @@ function Header(props) {
   
           </Box>
           <div style={{  display: 'flex', alignItems: 'center', gap: '.6rem', width: '6rem'}}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+              
+              
+              <div style={{ position: 'relative'}}>
+              <CartItemCounter  numOfCartItem={props.numOfCartItem}  />
+              </div>
+            
           <ShoppingCartIcon fontSize='small' sx={{ color: 'gray'}}/>
+            </div>
+         
           <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid hsl(26, 100%, 55%)' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
           </div>
         </Toolbar>
