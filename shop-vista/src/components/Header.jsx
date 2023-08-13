@@ -15,6 +15,7 @@ import iconImg from '../assets/image-avatar.png'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import '../index.css';
 import CartItemCounter from './CartItemCounter';
+import CartCard from './CartCard';
 const drawerWidth = 240;
 
 
@@ -22,11 +23,19 @@ function Header(props) {
   const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
   const pcSize = useMediaQuery('(min-width:900px)');
 
+  
+  const [CartFilled, setCartFilled] = useState(false)
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [IconActive , setIconActive] = useState(false)
   const [active , setActive] = useState(false)
   
+
+
+const handleShowCart = () => {
+  setCartFilled(!CartFilled)
+}
 
   const handleActive = () => {
     setActive(true);
@@ -123,8 +132,11 @@ function Header(props) {
               <div style={{ position: 'relative'}}>
               <CartItemCounter  numOfCartItem={props.numOfCartItem}  />
               </div>
-            
-          <ShoppingCartIcon fontSize='small' sx={{ color: 'gray'}}/>
+
+            <div onClick={handleShowCart} style={{cursor: 'pointer'}}>
+            <ShoppingCartIcon fontSize='small' sx={{ color: 'gray'}} />
+            </div>
+         {CartFilled &&  <CartCard />}
             </div>
          
           <img src={iconImg} alt=""  style={{ height: '2rem', width: '2rem', border: IconActive ? '2px solid hsl(26, 100%, 55%)' : 'none', borderRadius: '50%' }} onClick={handleIconActive}/>
