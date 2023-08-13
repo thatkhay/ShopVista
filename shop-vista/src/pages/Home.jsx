@@ -9,12 +9,22 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment } from '../reduxstore/counter'
-import { addtocart } from '../reduxstore/cart'
+
 
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
+
+  const isMobile = useMediaQuery('(min-width:0px) and (max-width:599.99px)')
+  const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
+  const pcSize = useMediaQuery('(min-width:900px)');
+
+ 
+
+const { count } = useSelector((state) => state.counter)
+const { cartNo } = useSelector((state) => state.cart)
+const [numOfCartItem, setNumOfCartItem] = useState(0)
 
   const openModal = (index) => {
     setSelectedProductIndex(index);
@@ -25,18 +35,27 @@ function Home() {
     setIsModalOpen(false);
   };
 
-  const isMobile = useMediaQuery('(min-width:0px) and (max-width:599.99px)')
-  const tabSize = useMediaQuery('(min-width:600px) and (max-width:900px)');
-  const pcSize = useMediaQuery('(min-width:900px)');
 
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const getCartNo = () => {
+    const newCartItemNum = cartNo + count;
+    setNumOfCartItem(newCartItemNum); 
+   
+  };
 
-const { count } = useSelector((state) => state.counter)
+
 
 const dispatch = useDispatch()
   const [products] = useState(data)
   const [value, setValue] = useState(0)
 
+  const setIncrement = () => {
+    dispatch(increment())
+  
+  }
+  const setDecrement = () => {
+    dispatch(decrement())
+   
+  }
 
   const { mainImg } = products[value]
 
@@ -85,17 +104,14 @@ const dispatch = useDispatch()
 
    <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '1rem' , marginTop: '1.5rem', flexDirection: isMobile ? 'column' : 'row'}}>
   <div style={{ height: '2rem', width: isMobile ? '70%' : '20%', display: 'flex', alignItems: 'center', backgroundColor: 'hsl(223, 64%, 98%)', padding: '0 1rem', borderRadius: '.3rem' , justifyContent: 'center', gap: tabSize ? '.4rem' : '2rem'}}>
-    <div onClick={() => dispatch(decrement())}><RemoveIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}} /></div>
+    <div onClick={setDecrement}><RemoveIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}} /></div>
     <span>{count}</span>
-   <div onClick={() => dispatch(increment())}><AddIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}}/></div> 
+   <div onClick={setIncrement}><AddIcon fontSize='small' sx={{color: 'hsl(26, 100%, 55%)'}}/></div> 
   </div>
-  <div style={{ height: '2rem', width: isMobile ? '70%' :  '40%', display: 'flex', alignItems: 'center', padding: '0 1rem', backgroundColor: 'hsl(26, 100%, 55%)', borderRadius: '.3rem', justifyContent: 'center', gap: '1rem', cursor: 'pointer'}}  onClick={() => {
-    dispatch(addtocart({ ...products[value], quantity: count }));
-    setButtonClicked(true); 
-  }}>
+  <div style={{ height: '2rem', width: isMobile ? '70%' :  '40%', display: 'flex', alignItems: 'center', padding: '0 1rem', backgroundColor: 'hsl(26, 100%, 55%)', borderRadius: '.3rem', justifyContent: 'center', gap: '1rem', cursor: 'pointer'}} onClick={getCartNo}>
     <ShoppingCartIcon fontSize='small' style={{color: 'white'}}/>
     <p style={{textTransform: 'capitalize', color: 'white', fontSize: tabSize ? '.6rem' : '1rem'}}>add to cart</p> 
-    {buttonClicked && <p>{count}</p>}
+     <p>{numOfCartItem} </p>
   </div>
    </div>
     </main>
