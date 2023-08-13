@@ -1,11 +1,17 @@
 import  Card  from '@mui/material/Card'
-import React from 'react'
+import React, { useState } from 'react'
 import cartImg from '../assets/image-product-1.jpg'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const CartCard = () => {
+
+  const [filledCart, setFilledCart] = useState(true)
+
+  const deleteCart = () => {
+    setFilledCart(false)
+  }
 
   const { count } = useSelector((state) => state.counter)
 
@@ -20,7 +26,7 @@ const CartCard = () => {
           <div style={{padding: '0 1rem', height: '2rem', borderBottom: '1px solid grey', textAlign: 'left'}}>
             <p>cart</p>
           </div>
-          <div style={{padding: '1rem'}}>
+          { filledCart ? <div style={{padding: '1rem'}}>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                <img src={cartImg} alt=""  style={{height: '2rem', width: '2rem', borderRadius: '.2rem'}}/> 
                <div style={{display: 'flex', alignItems: 'center', gap: '1px', flexDirection: 'column', justifyContent: 'center', flexFlow: 'wrap',}}>
@@ -29,14 +35,15 @@ const CartCard = () => {
                 </p>
                </div>
                
-            <div>
+            <div onClick={deleteCart}>
                 <DeleteIcon fontSize='small'  sx={{ color: 'gray'}} />
             </div>
-            </div>
-            
-          </div> <button style={{color: 'white', backgroundColor: 'hsl(26, 100%, 55%)', border: 0 , borderRadius: '.4rem', height: '2rem', width: '12rem'}}>
+            </div> <button style={{color: 'white', backgroundColor: 'hsl(26, 100%, 55%)', border: 0 , borderRadius: '.4rem', height: '2rem', width: '12rem', marginTop: '1rem'}}>
                     checkout
                 </button>
+            </div> : <p>Your cart is empty</p>}
+            
+         
         </Card>
     </div>
   )
