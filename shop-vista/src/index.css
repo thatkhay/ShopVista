@@ -13,20 +13,34 @@ code {
 }
 
 .homeActive:hover{
-  border-bottom: 1px solid hsl(26, 100%, 55%);
+  border-bottom: 1px solid hsl(0, 1%, 78%, 0.5);
 }
 .menActive:hover{
-  border-bottom: 1px solid hsl(26, 100%, 55%);
+  border-bottom: 1px solid hsl(0, 1%, 78%, 0.5);
 }
 .womenActive:hover{
-  border-bottom: 1px solid hsl(26, 100%, 55%);
+  border-bottom: 1px solid hsl(0, 1%, 78%, 0.5);
 }
 .aboutActive:hover{
-  border-bottom: 1px solid hsl(26, 100%, 55%);
+  border-bottom: 1px solid hsl(0, 1%, 78%, 0.5);
 }
 .contactActive:hover{
-  border-bottom: 1px solid hsl(26, 100%, 55%);
+  border-bottom: 1px solid hsl(0, 1%, 78%, 0.5);
 }
 
-
+.list-Home:hover{
+  background-color: gray;
+}
+.list-Men:hover{
+  background-color: gray;
+}
+.list-Women:hover{
+  background-color: gray;
+}
+.list-About:hover{
+  background-color: gray;
+}
+.list-Contact:hover{
+  background-color: gray;
+}
 

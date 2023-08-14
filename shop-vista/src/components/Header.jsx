@@ -16,6 +16,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import '../index.css';
 import CartItemCounter from './CartItemCounter';
 import CartCard from './CartCard';
+import ClearIcon from '@mui/icons-material/Clear';
 
 const drawerWidth = 240;
 
@@ -51,29 +52,30 @@ const handleShowCart = () => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column'}}>
       
       <Divider />
-      <List>
-       
-          <ListItem  disablePadding>
-           <Link to='/'>Home</Link>
+      <List style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 1rem', marginTop: '2rem'}}>
+        <ClearIcon  fontSize='small' style={{marginBottom: '1.4rem'}}/>
+
+          <ListItem className='list-Home' style={{padding: '0 .4rem'}}  disablePadding>
+           <Link style={{textDecoration: 'none', color: 'black'}} to='/'>Home</Link>
           </ListItem>
 
-          <ListItem  disablePadding>
-           <Link to='/'>Home</Link>
+          <ListItem className='list-Men' style={{padding: '0 .4rem'}}  disablePadding>
+           <Link style={{textDecoration: 'none', color: 'black'}} to='/'>Men</Link>
           </ListItem>
 
-          <ListItem  disablePadding>
-           <Link to='/'>Home</Link>
+          <ListItem className='list-Women' style={{padding: '0 .4rem'}}  disablePadding>
+           <Link style={{textDecoration: 'none', color: 'black'}} to='/'>Women</Link>
           </ListItem>
 
-          <ListItem  disablePadding>
-           <Link to='/'>Home</Link>
+          <ListItem className='list-About' style={{padding: '0 .4rem'}}  disablePadding>
+           <Link style={{textDecoration: 'none', color: 'black'}} to='/'>About</Link>
           </ListItem>
 
-          <ListItem  disablePadding>
-           <Link to='/'>Home</Link>
+          <ListItem className='list-Contact' style={{padding: '0 .4rem'}}  disablePadding>
+           <Link style={{textDecoration: 'none', color: 'black'}} to='/'>Contact</Link>
           </ListItem>
     
       </List>
@@ -106,19 +108,19 @@ const handleShowCart = () => {
           </ListItem>
           
           <ListItem className='menActive' style={{ height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
-           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/men'>Men</Link>
+           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Men</Link>
           </ListItem>
           
           <ListItem className='womenActive' style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
-           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/women'>Women</Link>
+           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Women</Link>
           </ListItem>
           
           <ListItem className='aboutActive' style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
-           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/about'>About</Link>
+           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>About</Link>
           </ListItem>
           
           <ListItem className='contactActive'  style={{  height: '4rem', width: '2rem' , display: 'flex', alignItems: 'center', justifyContent: 'center'}}  disablePadding>
-           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/contact'>Contact</Link>
+           <Link style={{textDecoration: 'none', color:'hsl(219, 9%, 45%)', fontSize: '.7rem'}} to='/'>Contact</Link>
           </ListItem>
      
       </List>

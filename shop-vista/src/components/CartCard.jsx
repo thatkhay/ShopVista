@@ -31,12 +31,12 @@ const CartCard = () => {
                <img src={cartImg} alt=""  style={{height: '2rem', width: '2rem', borderRadius: '.2rem'}}/> 
                <div style={{display: 'flex', alignItems: 'center', gap: '1px', flexDirection: 'column', justifyContent: 'center', flexFlow: 'wrap',}}>
                 <p style={{fontSize: '.7rem', color: ' hsl(219, 9%, 45%)', fontWeight: 400, textAlign: 'left'}}>Fall Limited Edition Sneaker <br />
-             $125.00 x {count} ${125 * count}
+             $125.00 x {count} <span style={{fontWeight: 900, color: 'black', marginLeft: '.2rem'}}> ${125 * count} </span> 
                 </p>
                </div>
                
             <div onClick={deleteCart}>
-                <DeleteIcon fontSize='small'  sx={{ color: 'gray'}} />
+                <DeleteIcon fontSize='small' sx={{ color: 'gray'}} />
             </div>
             </div> <button style={{color: 'white', backgroundColor: 'hsl(26, 100%, 55%)', border: 0 , borderRadius: '.4rem', height: '2rem', width: '12rem', marginTop: '1rem'}}>
                     checkout
